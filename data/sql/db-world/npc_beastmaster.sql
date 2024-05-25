@@ -4,8 +4,8 @@
 SET
 @Entry      := 601026,
 @Model      := 26314, -- Northrend Worgen White
-@Name       := "White Fang",
-@Title      := "BeastMaster",
+@Name       := "兽王",
+@Title      := "宠物大师",
 @Icon       := "Speak",
 @GossipMenu := 60102,
 @MinLevel   := 80,
@@ -32,8 +32,8 @@ INSERT INTO `creature_equip_template` VALUES (@Entry, 1, 2196, 1906, 0, 18019); 
 -- NPC TEXT
 DELETE FROM `npc_text` WHERE `ID` IN (601026, 601027);
 INSERT INTO `npc_text` (`ID`, `text0_0`) VALUES 
-(601026, 'Greetings, $N.$b$bIf you\'re looking for a trustful companion to take on your travels, you have come to the right place. I can offer you a variety of tamed pets to choose from. I can also supply you with food so that you can take good care of your new friend.'),
-(601027, 'What kind of pet are you interested in?');
+(601026, '如果你正在寻找一个值得信赖的旅行伙伴，那你就来对地方了。我可以为你提供各种驯服的宠物供你选择。我还可以为你提供食物，以便你好好照顾你的新朋友。'),
+(601027, '您对什么样的宠物感兴趣？');
 
 -- GOSSIP MENU
 DELETE FROM `gossip_menu` WHERE `MenuID` = 60102;

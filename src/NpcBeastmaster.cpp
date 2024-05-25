@@ -95,7 +95,7 @@ void NpcBeastmaster::ShowMainMenu(Player* player, Creature* creature)
     {
         if (player->getClass() != CLASS_HUNTER)
         {
-            creature->Whisper("I am sorry, but pets are for hunters only.", LANG_UNIVERSAL, player);
+            creature->Whisper("对不起，但宠物只属于猎人。", LANG_UNIVERSAL, player);
             return;
         }
     }
@@ -103,7 +103,7 @@ void NpcBeastmaster::ShowMainMenu(Player* player, Creature* creature)
     // Check level requirement
     if (player->getLevel() < BeastMasterMinLevel && BeastMasterMinLevel != 0)
     {
-        std::string messageExperience = Acore::StringFormatFmt("Sorry {}, but you must reach level {} before adopting a pet.", player->GetName(), BeastMasterMinLevel);
+        std::string messageExperience = Acore::StringFormatFmt("对不起，{}，但你必须达到{}级才能领养宠物。", player->GetName(), BeastMasterMinLevel);
         creature->Whisper(messageExperience.c_str(), LANG_UNIVERSAL, player);
         return;
     }
@@ -111,33 +111,33 @@ void NpcBeastmaster::ShowMainMenu(Player* player, Creature* creature)
     ClearGossipMenuFor(player);
 
     // MAIN MENU
-    AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_PETS);
-    AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Rare Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_PETS);
+    AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "普通宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_PETS);
+    AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "稀有宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_PETS);
 
     if (BeastMasterAllowExotic || player->HasSpell(PET_SPELL_BEAST_MASTERY) || player->HasTalent(PET_SPELL_BEAST_MASTERY, player->GetActiveSpec()))
     {
         if (player->getClass() != CLASS_HUNTER)
         {
-            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Exotic Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS);
-            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Rare Exotic Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS);
+            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "异种宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS);
+            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "稀有异种宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS);
         }
         else if (!BeastMasterHunterBeastMasteryRequired || player->HasTalent(PET_SPELL_BEAST_MASTERY, player->GetActiveSpec()))
         {
-            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Exotic Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS);
-            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Rare Exotic Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS);
+            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "异种宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS);
+            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "稀有异种宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS);
         }
     }
 
     // remove pet skills (not for hunters)
     if (player->getClass() != CLASS_HUNTER && player->HasSpell(PET_SPELL_CALL_PET))
-        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Unlearn Hunter Abilities", GOSSIP_SENDER_MAIN, PET_REMOVE_SKILLS);
+        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "遗忘猎人技能", GOSSIP_SENDER_MAIN, PET_REMOVE_SKILLS);
 
     // Stables for hunters only - Doesn't seem to work for other classes
     if (player->getClass() == CLASS_HUNTER)
-        AddGossipItemFor(player, GOSSIP_ICON_TAXI, "Visit Stable", GOSSIP_SENDER_MAIN, GOSSIP_OPTION_STABLEPET);
+        AddGossipItemFor(player, GOSSIP_ICON_TAXI, "参观马厩", GOSSIP_SENDER_MAIN, GOSSIP_OPTION_STABLEPET);
 
     // Pet Food Vendor
-    AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "Buy Pet Food", GOSSIP_SENDER_MAIN, GOSSIP_OPTION_VENDOR);
+    AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "购买宠物食物", GOSSIP_SENDER_MAIN, GOSSIP_OPTION_VENDOR);
 
     SendGossipMenuFor(player, PET_GOSSIP_HELLO, creature->GetGUID());
 
@@ -152,46 +152,46 @@ void NpcBeastmaster::GossipSelect(Player* player, Creature* creature, uint32 act
     if (action == PET_MAIN_MENU)
     {
         // MAIN MENU
-        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_PETS);
-        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Rare Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_PETS);
+        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "普通宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_PETS);
+        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "稀有宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_PETS);
 
         if (BeastMasterAllowExotic || player->HasSpell(PET_SPELL_BEAST_MASTERY) || player->HasTalent(PET_SPELL_BEAST_MASTERY, player->GetActiveSpec()))
         {
             if (player->getClass() != CLASS_HUNTER)
             {
-                AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Exotic Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS);
-                AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Rare Exotic Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS);
+                AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "异种宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS);
+                AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "稀有异种宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS);
             }
             else if (!BeastMasterHunterBeastMasteryRequired || player->HasTalent(PET_SPELL_BEAST_MASTERY, player->GetActiveSpec()))
             {
-                AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Exotic Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS);
-                AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Browse Rare Exotic Pets", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS);
+                AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "异种宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS);
+                AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "稀有异种宠物", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS);
             }
         }
 
         // remove pet skills (not for hunters)
         if (player->getClass() != CLASS_HUNTER && player->HasSpell(PET_SPELL_CALL_PET))
-            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Unlearn Hunter Abilities", GOSSIP_SENDER_MAIN, PET_REMOVE_SKILLS);
+            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "遗忘猎人技能", GOSSIP_SENDER_MAIN, PET_REMOVE_SKILLS);
 
         // Stables for hunters only - Doesn't seem to work for other classes
         if (player->getClass() == CLASS_HUNTER)
-            AddGossipItemFor(player, GOSSIP_ICON_TAXI, "Visit Stable", GOSSIP_SENDER_MAIN, GOSSIP_OPTION_STABLEPET);
+            AddGossipItemFor(player, GOSSIP_ICON_TAXI, "参观马厩", GOSSIP_SENDER_MAIN, GOSSIP_OPTION_STABLEPET);
 
-        AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "Buy Pet Food", GOSSIP_SENDER_MAIN, GOSSIP_OPTION_VENDOR);
+        AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "购买宠物食物", GOSSIP_SENDER_MAIN, GOSSIP_OPTION_VENDOR);
         SendGossipMenuFor(player, PET_GOSSIP_HELLO, creature->GetGUID());
     }
     else if (action >= PET_PAGE_START_PETS && action < PET_PAGE_START_EXOTIC_PETS)
     {
         // PETS
-        AddGossipItemFor(player, GOSSIP_ICON_TALK, "Back..", GOSSIP_SENDER_MAIN, PET_MAIN_MENU);
+        AddGossipItemFor(player, GOSSIP_ICON_TALK, "返回", GOSSIP_SENDER_MAIN, PET_MAIN_MENU);
         int page = action - PET_PAGE_START_PETS + 1;
         int maxPage = pets.size() / PET_PAGE_SIZE + (pets.size() % PET_PAGE_SIZE != 0);
 
         if (page > 1)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "Previous..", GOSSIP_SENDER_MAIN, PET_PAGE_START_PETS + page - 2);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "上一页", GOSSIP_SENDER_MAIN, PET_PAGE_START_PETS + page - 2);
 
         if (page < maxPage)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "Next..", GOSSIP_SENDER_MAIN, PET_PAGE_START_PETS + page);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "下一页", GOSSIP_SENDER_MAIN, PET_PAGE_START_PETS + page);
 
         AddPetsToGossip(player, pets, page);
         SendGossipMenuFor(player, PET_GOSSIP_BROWSE, creature->GetGUID());
@@ -204,19 +204,19 @@ void NpcBeastmaster::GossipSelect(Player* player, Creature* creature, uint32 act
         {
             player->addSpell(PET_SPELL_BEAST_MASTERY, SPEC_MASK_ALL, false);
             std::ostringstream messageLearn;
-            messageLearn << "I have taught you the art of Beast Mastery, " << player->GetName() << ".";
+            messageLearn << "我已经教你了兽王的技巧， " << player->GetName() << ".";
             creature->Whisper(messageLearn.str().c_str(), LANG_UNIVERSAL, player);
         }
 
-        AddGossipItemFor(player, GOSSIP_ICON_TALK, "Back..", GOSSIP_SENDER_MAIN, PET_MAIN_MENU);
+        AddGossipItemFor(player, GOSSIP_ICON_TALK, "返回", GOSSIP_SENDER_MAIN, PET_MAIN_MENU);
         int page = action - PET_PAGE_START_EXOTIC_PETS + 1;
         int maxPage = exoticPets.size() / PET_PAGE_SIZE + (exoticPets.size() % PET_PAGE_SIZE != 0);
 
         if (page > 1)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "Previous..", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS + page - 2);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "上一页", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS + page - 2);
 
         if (page < maxPage)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "Next..", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS + page);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "下一页", GOSSIP_SENDER_MAIN, PET_PAGE_START_EXOTIC_PETS + page);
 
         AddPetsToGossip(player, exoticPets, page);
         SendGossipMenuFor(player, PET_GOSSIP_BROWSE, creature->GetGUID());
@@ -224,15 +224,15 @@ void NpcBeastmaster::GossipSelect(Player* player, Creature* creature, uint32 act
     else if (action >= PET_PAGE_START_RARE_PETS && action < PET_PAGE_START_RARE_EXOTIC_PETS)
     {
         // RARE PETS
-        AddGossipItemFor(player, GOSSIP_ICON_TALK, "Back..", GOSSIP_SENDER_MAIN, PET_MAIN_MENU);
+        AddGossipItemFor(player, GOSSIP_ICON_TALK, "返回", GOSSIP_SENDER_MAIN, PET_MAIN_MENU);
         int page = action - PET_PAGE_START_RARE_PETS + 1;
         int maxPage = rarePets.size() / PET_PAGE_SIZE + (rarePets.size() % PET_PAGE_SIZE != 0);
 
         if (page > 1)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "Previous..", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_PETS + page - 2);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "上一页", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_PETS + page - 2);
 
         if (page < maxPage)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "Next..", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_PETS + page);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "下一页", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_PETS + page);
 
         AddPetsToGossip(player, rarePets, page);
         SendGossipMenuFor(player, PET_GOSSIP_BROWSE, creature->GetGUID());
@@ -245,19 +245,19 @@ void NpcBeastmaster::GossipSelect(Player* player, Creature* creature, uint32 act
         {
             player->addSpell(PET_SPELL_BEAST_MASTERY, SPEC_MASK_ALL, false);
             std::ostringstream messageLearn;
-            messageLearn << "I have taught you the art of Beast Mastery, " << player->GetName() << ".";
+            messageLearn << "我已经教你了兽王的技巧，" << player->GetName() << ".";
             creature->Whisper(messageLearn.str().c_str(), LANG_UNIVERSAL, player);
         }
 
-        AddGossipItemFor(player, GOSSIP_ICON_TALK, "Back..", GOSSIP_SENDER_MAIN, PET_MAIN_MENU);
+        AddGossipItemFor(player, GOSSIP_ICON_TALK, "返回", GOSSIP_SENDER_MAIN, PET_MAIN_MENU);
         int page = action - PET_PAGE_START_RARE_EXOTIC_PETS + 1;
         int maxPage = rareExoticPets.size() / PET_PAGE_SIZE + (rareExoticPets.size() % PET_PAGE_SIZE != 0);
 
         if (page > 1)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "Previous..", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS + page - 2);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "上一页", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS + page - 2);
 
         if (page < maxPage)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "Next..", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS + page);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "下一页", GOSSIP_SENDER_MAIN, PET_PAGE_START_RARE_EXOTIC_PETS + page);
 
         AddPetsToGossip(player, rareExoticPets, page);
         SendGossipMenuFor(player, PET_GOSSIP_BROWSE, creature->GetGUID());
@@ -292,7 +292,7 @@ void NpcBeastmaster::CreatePet(Player* player, Creature* creature, uint32 action
     // Check if player already has a pet
     if (player->IsExistPet())
     {
-        creature->Whisper("First you must abandon or stable your current pet!", LANG_UNIVERSAL, player);
+        creature->Whisper("首先，你必须放弃或者寄养你现在的宠物！", LANG_UNIVERSAL, player);
         CloseGossipMenuFor(player);
         return;
     }
@@ -301,7 +301,7 @@ void NpcBeastmaster::CreatePet(Player* player, Creature* creature, uint32 action
     Pet* pet = player->CreatePet(action - PET_PAGE_MAX, player->getClass() == CLASS_HUNTER ? PET_SPELL_TAME_BEAST : PET_SPELL_CALL_PET);
     if (!pet)
     {
-        creature->Whisper("First you must abandon or stable your current pet!", LANG_UNIVERSAL, player);
+        creature->Whisper("首先，你必须放弃或者寄养你现在的宠物！", LANG_UNIVERSAL, player);
         return;
     }
 
@@ -321,7 +321,7 @@ void NpcBeastmaster::CreatePet(Player* player, Creature* creature, uint32 action
     }
 
     // Farewell
-    std::string messageAdopt = Acore::StringFormatFmt("A fine choice {}! Take good care of your {} and you will never face your enemies alone.", player->GetName(), pet->GetName());
+    std::string messageAdopt = Acore::StringFormatFmt("好选择，{}！好好照顾你的{}，你将永远不会独自面对你的敌人。", player->GetName(), pet->GetName());
     creature->Whisper(messageAdopt.c_str(), LANG_UNIVERSAL, player);
     CloseGossipMenuFor(player);
 }
