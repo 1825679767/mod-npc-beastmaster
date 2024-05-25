@@ -1,41 +1,41 @@
 [worldserver]
 
 ###################################################################################################
-#	BEASTMASTER NPC
+#	兽王 NPC
 ###################################################################################################
 
-# Enable only for the hunter class?
+# 仅对猎人职业启用？
 
 BeastMaster.HunterOnly = 1
 
-# Required level to adopt pets. (default: 10, 0 = disable)
+# 领养宠物所需的等级。（默认值：10，0 = 禁用）
 
 BeastMaster.MinLevel = 10
 
-# Hunters are required to have Beast Mastery to adopt exotic pets. (default: 0)
+# 猎人需要野兽掌握技能才能领养异种宠物。（默认值：0）
 
 BeastMaster.HunterBeastMasteryRequired = 1
 
-# Allow exotic pets for non-hunters (default: 1)
+# 允许非猎人使用异种宠物（默认值：1）
 
 BeastMaster.AllowExotic = 0
 
-# Keep pet always happy (default: 0)
+# 让宠物始终保持快乐状态（默认值：0）
 
 BeastMaster.KeepPetHappy = 0
 
-# Normal pets
+# 普通宠物
 
-BeastMaster.Pets="Bat,10357,Bear,12037,Boar,29996,Cat,2175,Carrion Bird,2931,Crab,18241,Crocolisk,1417,Dragonhawk,18155,Gorilla,1559,Hound,29452,Hyena,5829,Moth,25498,Nether Ray,18285,Owl,14343,Raptor,9684,Ravager,22123,Scorpid,14476,Serpent,28011,Spider,12433,Spore Bat,18280,Tallstrider,22807,Turtle,14223,Warp Stalker,23163,Wasp,18283,Wind Serpent,5834,Wolf,3825,Worg,24128"
+BeastMaster.Pets="蝙蝠,10357,熊,12037,野猪,29996,猫,2175,食腐鸟,2931,螃蟹,18241,鳄鱼,1417,龙鹰,18155,大猩猩,1559,猎犬,29452,鬣狗,5829,蛾,25498,虚空鳐,18285,猫头鹰,14343,迅猛龙,9684,破坏者,22123,蝎子,14476,蛇,28011,蜘蛛,12433,孢子蝠,18280,高脚鸟,22807,乌龟,14223,迁跃追踪者,23163,黄蜂,18283,风蛇,5834,狼,3825,座狼,24128"
 
-# Exotic pets
+# 异种宠物
 
-BeastMaster.ExoticPets="Chimaera,20932,Core Hound,33502,Devilsaur,32485,Rhino,25487,Silithid,6582,Jormungar Worm,30422,Arcturis (Spirit Bear),38453,Gondria (Spirit Tiger),33776,Loque'nahak (Spirit Leopard),32517,Skoll (Spirit Worg),35189"
+BeastMaster.ExoticPets="奇美拉,20932,熔岩犬,33502,恶魔龙,32485,犀牛,25487,异种虫,6582,约尔蒙格虫,30422,阿图里斯（灵魂熊）,38453,冈德里亚（灵魂虎）,33776,洛奇纳哈克（灵魂豹）,32517,斯科尔（灵魂狼）,35189"
 
-# Rare pets
+# 稀有宠物
 
-BeastMaster.RarePets="Mazzranache (Tallstrider),3068,Aotona (Bird),32481"
+BeastMaster.RarePets="马兹拉纳其 (长脚鸟),3068,奥托纳 (鸟),32481"
 
-# Rare Exotic pets
+# 稀有异种宠物
 
-BeastMaster.RareExoticPets="Kurken,17447"
+BeastMaster.RareExoticPets="库尔肯,17447"
