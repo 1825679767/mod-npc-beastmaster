@@ -6,7 +6,7 @@
 
 # 仅对猎人职业启用？
 
-BeastMaster.HunterOnly = 1
+BeastMaster.HunterOnly = 0
 
 # 领养宠物所需的等级。（默认值：10，0 = 禁用）
 
@@ -14,7 +14,7 @@ BeastMaster.MinLevel = 10
 
 # 猎人需要野兽掌握技能才能领养异种宠物。（默认值：0）
 
-BeastMaster.HunterBeastMasteryRequired = 1
+BeastMaster.HunterBeastMasteryRequired = 0
 
 # 允许非猎人使用异种宠物（默认值：1）
 

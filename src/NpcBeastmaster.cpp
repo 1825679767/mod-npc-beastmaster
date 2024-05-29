@@ -170,8 +170,8 @@ void NpcBeastmaster::GossipSelect(Player* player, Creature* creature, uint32 act
         }
 
         // remove pet skills (not for hunters)
-        if (player->getClass() != CLASS_HUNTER && player->HasSpell(PET_SPELL_CALL_PET))
-            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "遗忘猎人技能", GOSSIP_SENDER_MAIN, PET_REMOVE_SKILLS);
+        //  if (player->getClass() != CLASS_HUNTER && player->HasSpell(PET_SPELL_CALL_PET))
+        //    AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "遗忘猎人技能", GOSSIP_SENDER_MAIN, PET_REMOVE_SKILLS);
 
         // Stables for hunters only - Doesn't seem to work for other classes
         if (player->getClass() == CLASS_HUNTER)
